@@ -8,3 +8,6 @@ Skipped Swagger and other packages. Works while debugging with chrome.
 *Installed Swagger after all. Swashbuckle, Swashbuckle.Core, WebActivatorEx
 *SwaggerConfig.cs under App_Start folder. (it also needs additional using System.Collections.Generic; for Dictionary() object)
 *Update Project Properties: Build->Output, XML documentation file (check)
+* deployed to GIT hub
+
+for Grek  Gl...., mail kurie... maslo Edbe.... osiemdziesiaty dziewiaty
