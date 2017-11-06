@@ -75,7 +75,7 @@ namespace OrdersTestApi.Controllers
             singleOrder2.customerId = "9876";
             singleOrder2.description = "Inhalator";
             singleOrder2.dos = "11-4-2017";
-            singleOrder2.hcpcs = "b123";
+            singleOrder2.hcpcs = "B123";
             singleOrder2.carrier10 = "UPS";
             singleOrder2.tracking35 = "Z998877";
             singleOrder2.next_elig = "12-13-2017";
@@ -84,6 +84,22 @@ namespace OrdersTestApi.Controllers
             singleOrder2.reorder_qt = 15;
 
             orderProfileResponse.Add(singleOrder2);
+
+            Models.Data singleOrder3 = new Data();
+
+            singleOrder3.customerId = "1122";
+            singleOrder3.description = "Albuterol RX";
+            singleOrder3.dos = "11-1-2017";
+            singleOrder3.hcpcs = "C123";
+            singleOrder3.carrier10 = "Postal Service";
+            singleOrder3.tracking35 = "UPS998877";
+            singleOrder3.next_elig = "12-14-2017";
+            singleOrder3.quantity = "7";
+            singleOrder3.order_stat = "Shipped";
+            singleOrder3.reorder_qt = 14;
+
+            orderProfileResponse.Add(singleOrder3);
+
             return orderProfileResponse;
         }
 
@@ -106,11 +122,39 @@ namespace OrdersTestApi.Controllers
             List<Models.Data> orderProfileResponse = new List<Models.Data>();
             orderProfileResponse = GetOrderProfileMock();
 
-            var table = orderProfileResponse.ToHtmlTable();
+            List<OrderProfileView> orderProfileViewList = new List<OrderProfileView>();
+            if (orderProfileResponse.Count > 0)
+            {
+                foreach(Data item in orderProfileResponse)
+                {
+                    OrderProfileView row = ConvertToView(item);
+                    orderProfileViewList.Add(row);
+                }
+            }
+
+            //var table = orderProfileResponse.ToHtmlTable();
+
+            var table = orderProfileViewList.ToHtmlTable();
 
             rv = table.ToString().Trim();
 
             return rv;
+        }
+
+        private OrderProfileView ConvertToView(Data singleOrder)
+        {
+            OrderProfileView singleView = new OrderProfileView();
+
+            singleView.SELECT = "<input type='radio' />";
+            singleView.REORDER = "";
+            singleView.STATUS = singleOrder.order_stat;
+            singleView.DESCRIPTION = singleOrder.description;
+            singleView.QTY = singleOrder.quantity;
+            singleView.DATE_OF_SERVICE = singleOrder.dos;
+            singleView.HCPC = singleOrder.hcpcs;
+            singleView.TRACKING = singleOrder.tracking35;
+
+            return singleView;
         }
 
 

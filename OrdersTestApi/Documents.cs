@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OrdersTestApi
 {
     /// <summary>
-    /// 
+    /// Extension class for IEnumerable List
     /// </summary>
     public static class Documents
     {
@@ -17,7 +17,7 @@ namespace OrdersTestApi
 
             return listOfClassObjects == null || !listOfClassObjects.Any()
                 ? ret
-                : "<table>" +
+                : "<table class='flextable'>" +
                   listOfClassObjects.First().GetType().GetProperties().Select(p => p.Name).ToList().ToColumnHeaders() +
                   listOfClassObjects.Aggregate(ret, (current, t) => current + t.ToHtmlTableRow()) +
                   "</table>";
@@ -39,10 +39,8 @@ namespace OrdersTestApi
                   listOfProperties.Aggregate(ret,
                       (current, propValue) =>
                           current +
-                          ("<th style='font-size: 11pt; font-weight: bold; border: 1pt solid black'>" +
-                           (Convert.ToString(propValue).Length <= 100
-                               ? Convert.ToString(propValue)
-                               : Convert.ToString(propValue).Substring(0, 100)) + "..." + "</th>")) +
+                          ("<th>" +            //("<th style='font-size: 11pt; font-weight: bold; border: 1pt solid black'>" +
+                           (Convert.ToString(propValue).Length <= 100  ? Convert.ToString(propValue).ToUpper() : Convert.ToString(propValue).Substring(0, 100).ToUpper() ) + "</th>")) +
                   "</tr>";
         }
 
@@ -63,7 +61,7 @@ namespace OrdersTestApi
                       .GetProperties()
                       .Aggregate(ret,
                           (current, prop) =>
-                              current + ("<td style='font-size: 11pt; font-weight: normal; border: 1pt solid black'>" +
+                              current + ("<td>" +
                                          (Convert.ToString(prop.GetValue(classObject, null)).Length <= 100
                                              ? Convert.ToString(prop.GetValue(classObject, null))
                                              : Convert.ToString(prop.GetValue(classObject, null)).Substring(0, 100) +

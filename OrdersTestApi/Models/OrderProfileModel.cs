@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace OrdersTestApi.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class OrderProfileModel
     {
         public List<Data> data { get; set; }
         public Result result { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Data
     {
         public string customerId { get; set; }
@@ -26,6 +32,9 @@ namespace OrdersTestApi.Models
         public int? reorder_qt { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Result
     {
         public bool success { get; set; }

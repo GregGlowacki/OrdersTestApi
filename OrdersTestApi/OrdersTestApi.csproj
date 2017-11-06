@@ -176,6 +176,8 @@
     </Compile>
     <Compile Include="Models\OrderProfileModel.cs" />
     <Compile Include="Models\OrderProfileResponseModel.cs" />
+    <Compile Include="Models\OrderProfileView.cs" />
+    <Compile Include="Models\OrderProfileViewList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translators\OrderProfileTranslator.cs" />
   </ItemGroup>
