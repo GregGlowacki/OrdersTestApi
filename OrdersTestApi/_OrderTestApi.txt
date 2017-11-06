@@ -1,0 +1,10 @@
+﻿2011/11/05
+
+Creation for CRM testing.
+Returning mock JSON data, like from Lincare.Api.Orders service in Azure.
+
+Skipped Swagger and other packages. Works while debugging with chrome.
+**
+*Installed Swagger after all. Swashbuckle, Swashbuckle.Core, WebActivatorEx
+*SwaggerConfig.cs under App_Start folder. (it also needs additional using System.Collections.Generic; for Dictionary() object)
+*Update Project Properties: Build->Output, XML documentation file (check)
